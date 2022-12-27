@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import RangeNumber from "./RangeNumber";
 
 interface DiceRangeInputProps {
   range: number;
@@ -7,12 +8,20 @@ interface DiceRangeInputProps {
 }
 
 const DiceRangeInput: React.FC<DiceRangeInputProps> = ({ range, setRange }) => {
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    setIsSubmit(true);
+  };
+
   return (
     <Container>
-      <StyledForm onSubmit={(e) => e.preventDefault()}>
+      <StyledForm onSubmit={handleSubmit}>
         <Label>Choose a number:</Label>
         <Input type="number" value={range} onChange={(e) => setRange(parseInt(e.target.value))} />
         <SubmitButton type="submit">Submit</SubmitButton>
+        <RangeNumber isSubmit={isSubmit} range={range} />
       </StyledForm>
     </Container>
   );
