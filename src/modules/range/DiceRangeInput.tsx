@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface DiceRangeInputProps {
   range: number;
-  setRange: any;
+  setRange: (x: number) => void;
 }
 
 const DiceRangeInput: React.FC<DiceRangeInputProps> = ({ range, setRange }) => {
@@ -11,7 +11,7 @@ const DiceRangeInput: React.FC<DiceRangeInputProps> = ({ range, setRange }) => {
     <Container>
       <StyledForm onSubmit={(e) => e.preventDefault()}>
         <Label>Choose a number:</Label>
-        <TextInput value={range} onChange={(e) => setRange(e.target.value)} />
+        <TextInput value={range} onChange={(e) => setRange(parseInt(e.target.value))} />
         <SubmitInput type="submit" />
       </StyledForm>
     </Container>
