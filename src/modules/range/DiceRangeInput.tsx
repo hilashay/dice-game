@@ -11,7 +11,7 @@ const DiceRangeInput: React.FC<DiceRangeInputProps> = ({ range, setRange }) => {
     <Container>
       <StyledForm onSubmit={(e) => e.preventDefault()}>
         <Label>Choose a number:</Label>
-        <TextInput type="text" value={range} onChange={(e) => setRange(e.target.value)} />
+        <TextInput value={range} onChange={(e) => setRange(e.target.value)} />
         <SubmitInput type="submit" />
       </StyledForm>
     </Container>
