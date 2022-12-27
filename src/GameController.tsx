@@ -3,21 +3,24 @@ import styled from "styled-components";
 import "./App.css";
 import Dice from "./modules/dice/Dice";
 import ResultHistory from "./modules/history/ResultHistory";
+import DiceRangeInput from "./modules/range/DiceRangeInput";
 
 interface GameControllerProps {}
 
 const GameController: React.FC<GameControllerProps> = ({}) => {
   const [history, setHistory] = useState<number[]>([]);
+  const [range, setRange] = useState<number>(0);
+  console.log(range);
 
   const onDiceResult = (number: number) => {
-    console.log(number);
     setHistory((prev) => [...prev, number]);
-    console.log(history);
   };
 
   return (
     <Container>
-      <Dice range={5} onDiceResult={onDiceResult} />
+      <DiceRangeInput range={range} setRange={setRange} />
+      <Dice range={range} onDiceResult={onDiceResult} />
+      <Dice range={range} onDiceResult={onDiceResult} />
       <ResultHistory history={history} />
     </Container>
   );
