@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-interface ResultHistoryProps {}
+interface ResultHistoryProps {
+  history: number[];
+}
 
-const ResultHistory: React.FC<ResultHistoryProps> = ({}) => {
-  return <Container></Container>;
+const ResultHistory: React.FC<ResultHistoryProps> = ({ history }) => {
+  return <Container>{history}</Container>;
 };
 
 export default ResultHistory;
