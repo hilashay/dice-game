@@ -1,12 +1,82 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import GuessedNumber from "./GuessedNumber";
 
-interface UserGuessInputProps {}
+interface UserGuessInputProps {
+  range: number;
+  isSubmit: boolean;
+  setIsSubmit: (x: boolean) => void;
+  guessedNumber: number;
+  setGuessedNumber: (x: number) => void;
+}
 
-const UserGuessInput: React.FC<UserGuessInputProps> = ({}) => {
-  return <Container></Container>;
+const UserGuessInput: React.FC<UserGuessInputProps> = ({
+  range,
+  isSubmit,
+  setIsSubmit,
+  guessedNumber,
+  setGuessedNumber,
+}) => {
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    setIsSubmit(true);
+    if (guessedNumber > range) {
+      alert("Only numbers between 0 to youre range you choose");
+      setIsSubmit(false);
+    }
+  };
+
+  return (
+    <Container>
+      <StyledForm onSubmit={handleSubmit}>
+        <Label>Wanna guess?</Label>
+        <Input
+          type="number"
+          value={guessedNumber}
+          onChange={(e) => setGuessedNumber(parseInt(e.target.value))}
+        ></Input>
+        <SubmitButton>Submit guess</SubmitButton>
+      </StyledForm>
+      <GuessedNumber guessedNumber={guessedNumber} isSubmit={isSubmit} />
+    </Container>
+  );
 };
 
 export default UserGuessInput;
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 180px;
+  padding: 20px 0;
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 130px;
+  align-items: center;
+`;
+
+const Label = styled.label`
+  font-size: 24px;
+`;
+
+const Input = styled.input`
+  width: 88px;
+`;
+
+const SubmitButton = styled.button`
+  background-color: #447c99;
+  border-radius: 5px;
+  border-width: inherit;
+  cursor: pointer;
+  color: white;
+  width: 64px;
+  padding: 5px 0;
+  font-family: "Dosis", sans-serif;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`;

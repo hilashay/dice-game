@@ -4,13 +4,14 @@ import "./App.css";
 import Dice from "./modules/dice/Dice";
 import ResultHistory from "./modules/history/ResultHistory";
 import DiceRangeInput from "./modules/range/DiceRangeInput";
+import UserGuessInput from "./modules/guess/UserGuessInput";
+import GuessSection from "./modules/guess/GuessSection";
 
 interface GameControllerProps {}
 
 const GameController: React.FC<GameControllerProps> = ({}) => {
   const [history, setHistory] = useState<number[]>([]);
   const [range, setRange] = useState<number>(0);
-  console.log(range);
 
   const onDiceResult = (number: number) => {
     setHistory((prev) => [...prev, number]);
@@ -19,6 +20,7 @@ const GameController: React.FC<GameControllerProps> = ({}) => {
   return (
     <Container>
       <DiceRangeInput range={range} setRange={setRange} />
+      <GuessSection range={range} />
       <DicesContainer>
         <Dice range={range} onDiceResult={onDiceResult} />
         <Dice range={range} onDiceResult={onDiceResult} />
