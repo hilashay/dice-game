@@ -16,27 +16,17 @@ const Dice: React.FC<DiceProps> = ({ range, onDiceResult }) => {
     onDiceResult(randomNumber);
   };
 
-  return (
-    <Container>
-      <StyledDice onClick={handleClick}>{diceResult}</StyledDice>
-    </Container>
-  );
+  return <StyledDice onClick={handleClick}>{diceResult}</StyledDice>;
 };
 
 export default Dice;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 const StyledDice = styled.div`
   width: 120px;
-  padding: 40px 0;
+  height: 100px;
   background: #ffffff;
   display: flex;
+  align-items: center;
   justify-content: center;
   border: 2px solid black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

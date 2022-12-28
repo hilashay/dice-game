@@ -19,8 +19,10 @@ const GameController: React.FC<GameControllerProps> = ({}) => {
   return (
     <Container>
       <DiceRangeInput range={range} setRange={setRange} />
-      <Dice range={range} onDiceResult={onDiceResult} />
-      <Dice range={range} onDiceResult={onDiceResult} />
+      <DicesContainer>
+        <Dice range={range} onDiceResult={onDiceResult} />
+        <Dice range={range} onDiceResult={onDiceResult} />
+      </DicesContainer>
       <ResultHistory history={history} />
     </Container>
   );
@@ -28,4 +30,16 @@ const GameController: React.FC<GameControllerProps> = ({}) => {
 
 export default GameController;
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 100px;
+`;
+const DicesContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  height: 200px;
+  align-items: center;
+`;
