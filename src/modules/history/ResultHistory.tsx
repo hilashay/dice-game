@@ -6,9 +6,25 @@ interface ResultHistoryProps {
 }
 
 const ResultHistory: React.FC<ResultHistoryProps> = ({ history }) => {
-  return <Container>{history}</Container>;
+  return (
+    <Container>
+      <Title>History numbers:</Title>
+      {history.map((num) => (
+        <EachNumber>{num}</EachNumber>
+      ))}
+    </Container>
+  );
 };
 
 export default ResultHistory;
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Title = styled.p`
+  font-size: 16px;
+  margin-bottom: 10px;
+`;
+const EachNumber = styled.div``;
