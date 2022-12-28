@@ -21,8 +21,8 @@ const DiceRangeInput: React.FC<DiceRangeInputProps> = ({ range, setRange }) => {
         <Label>Choose a number:</Label>
         <Input type="number" value={range} onChange={(e) => setRange(parseInt(e.target.value))} />
         <SubmitButton type="submit">Submit</SubmitButton>
-        <RangeNumber isSubmit={isSubmit} range={range} />
       </StyledForm>
+      <RangeNumber isSubmit={isSubmit} range={range} />
     </Container>
   );
 };
@@ -34,14 +34,14 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  height: 160px;
 `;
 
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 104px;
+  height: 120px;
   align-items: center;
 `;
 

@@ -15,5 +15,4 @@ export default RangeNumber;
 const SelectedNumberStyle = styled.p`
   font-size: 16px;
   align-self: center;
-  padding: 16px 0;
 `;
