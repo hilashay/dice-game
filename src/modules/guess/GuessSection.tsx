@@ -8,17 +8,14 @@ interface GuessSectionProps {
 }
 
 const GuessSection: React.FC<GuessSectionProps> = ({ range }) => {
-  const [isSubmit, setIsSubmit] = useState(false);
   const [guessedNumber, setGuessedNumber] = useState(0);
+
+  const onGuess = (number: number) => {
+    setGuessedNumber(number);
+  };
   return (
     <Container>
-      <UserGuessInput
-        range={range}
-        isSubmit={isSubmit}
-        setIsSubmit={setIsSubmit}
-        guessedNumber={guessedNumber}
-        setGuessedNumber={setGuessedNumber}
-      />
+      <UserGuessInput range={range} onGuess={onGuess} />
       <GuessResult />
     </Container>
   );

@@ -4,22 +4,18 @@ import GuessedNumber from "./GuessedNumber";
 
 interface UserGuessInputProps {
   range: number;
-  isSubmit: boolean;
-  setIsSubmit: (x: boolean) => void;
-  guessedNumber: number;
-  setGuessedNumber: (x: number) => void;
+  onGuess: (x: number) => void;
 }
 
-const UserGuessInput: React.FC<UserGuessInputProps> = ({
-  range,
-  isSubmit,
-  setIsSubmit,
-  guessedNumber,
-  setGuessedNumber,
-}) => {
+const UserGuessInput: React.FC<UserGuessInputProps> = ({ range, onGuess }) => {
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [guessedNumber, setGuessedNumber] = useState(0);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    console.log("e.target.value", e.target.value);
     setIsSubmit(true);
+
     if (guessedNumber > range) {
       alert("Only numbers between 0 to youre range you choose");
       setIsSubmit(false);
@@ -37,7 +33,7 @@ const UserGuessInput: React.FC<UserGuessInputProps> = ({
         ></Input>
         <SubmitButton>Submit guess</SubmitButton>
       </StyledForm>
-      <GuessedNumber guessedNumber={guessedNumber} isSubmit={isSubmit} />
+      {isSubmit ? <GuessedNumber number={guessedNumber} /> : null}
     </Container>
   );
 };

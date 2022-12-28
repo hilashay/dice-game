@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 interface GuessedNumberProps {
-  isSubmit: boolean;
-  guessedNumber: number;
+  number: number;
 }
 
-const GuessedNumber: React.FC<GuessedNumberProps> = ({ isSubmit, guessedNumber }) => {
-  return isSubmit ? <SelectedNumberStyle>chosen number:{guessedNumber}</SelectedNumberStyle> : null;
+const GuessedNumber: React.FC<GuessedNumberProps> = ({ number }) => {
+  return <SelectedNumberStyle>chosen number:{number}</SelectedNumberStyle>;
 };
 
 export default GuessedNumber;
