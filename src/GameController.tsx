@@ -12,15 +12,17 @@ interface GameControllerProps {}
 const GameController: React.FC<GameControllerProps> = ({}) => {
   const [history, setHistory] = useState<number[]>([]);
   const [range, setRange] = useState<number>(0);
+  const [lastNumber, setLastNumber] = useState<number>(0);
 
   const onDiceResult = (number: number) => {
     setHistory((prev) => [...prev, number]);
+    setLastNumber(number);
   };
 
   return (
     <Container>
       <DiceRangeInput range={range} setRange={setRange} />
-      <GuessSection range={range} />
+      <GuessSection range={range} lastNumber={lastNumber} />
       <DicesContainer>
         <Dice range={range} onDiceResult={onDiceResult} />
         <Dice range={range} onDiceResult={onDiceResult} />

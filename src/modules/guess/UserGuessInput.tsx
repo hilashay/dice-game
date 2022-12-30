@@ -15,7 +15,7 @@ const UserGuessInput: React.FC<UserGuessInputProps> = ({ range, onGuess }) => {
     e.preventDefault();
     console.log("e.target.value", e.target.value);
     setIsSubmit(true);
-
+    onGuess(guessedNumber);
     if (guessedNumber > range) {
       alert("Only numbers between 0 to youre range you choose");
       setIsSubmit(false);

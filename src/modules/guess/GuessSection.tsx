@@ -5,9 +5,10 @@ import UserGuessInput from "./UserGuessInput";
 
 interface GuessSectionProps {
   range: number;
+  lastNumber: number;
 }
 
-const GuessSection: React.FC<GuessSectionProps> = ({ range }) => {
+const GuessSection: React.FC<GuessSectionProps> = ({ range, lastNumber }) => {
   const [guessedNumber, setGuessedNumber] = useState(0);
 
   const onGuess = (number: number) => {
@@ -16,7 +17,7 @@ const GuessSection: React.FC<GuessSectionProps> = ({ range }) => {
   return (
     <Container>
       <UserGuessInput range={range} onGuess={onGuess} />
-      <GuessResult />
+      <GuessResult guessedNumber={guessedNumber} lastNumber={lastNumber} />
     </Container>
   );
 };

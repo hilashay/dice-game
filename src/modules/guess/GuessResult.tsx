@@ -5,9 +5,14 @@
 import React from "react";
 import styled from "styled-components";
 
-interface GuessResultProps {}
+interface GuessResultProps {
+  guessedNumber: number;
+  lastNumber: number;
+}
 
-const GuessResult: React.FC<GuessResultProps> = ({}) => {
+const GuessResult: React.FC<GuessResultProps> = ({ guessedNumber, lastNumber }) => {
+  console.log("lastNumber", lastNumber);
+  console.log("guessedNumber", guessedNumber);
   return <Container></Container>;
 };
 
