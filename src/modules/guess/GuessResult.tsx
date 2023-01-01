@@ -11,11 +11,20 @@ interface GuessResultProps {
 }
 
 const GuessResult: React.FC<GuessResultProps> = ({ guessedNumber, lastNumber }) => {
-  console.log("lastNumber", lastNumber);
-  console.log("guessedNumber", guessedNumber);
-  return <Container></Container>;
+  console.log("GuessResult- rendered");
+  let result;
+  if (guessedNumber === lastNumber || guessedNumber === lastNumber) {
+    result = "yay!";
+  } else {
+    result = "boo:(";
+  }
+  return guessedNumber && lastNumber !== 0 ? <Text>{result}</Text> : null;
 };
 
 export default GuessResult;
 
-const Container = styled.div``;
+const Text = styled.p`
+  font-size: 16px;
+  font-weight: bold;
+  align-self: center;
+`;

@@ -8,6 +8,8 @@ interface DiceRangeInputProps {
 }
 
 const DiceRangeInput: React.FC<DiceRangeInputProps> = ({ range, setRange }) => {
+  console.log("DiceRangeInput- rendered");
+
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleSubmit = (e: any) => {

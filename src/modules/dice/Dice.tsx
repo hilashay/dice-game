@@ -8,6 +8,7 @@ interface DiceProps {
 }
 
 const Dice: React.FC<DiceProps> = ({ range, onDiceResult }) => {
+  console.log("Dice- rendered");
   const [diceResult, setDiceResult] = useState(0);
 
   const handleClick = () => {

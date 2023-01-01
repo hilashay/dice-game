@@ -6,6 +6,7 @@ interface GuessedNumberProps {
 }
 
 const GuessedNumber: React.FC<GuessedNumberProps> = ({ number }) => {
+  console.log("GuessedNumber- rendered");
   return <SelectedNumberStyle>chosen number:{number}</SelectedNumberStyle>;
 };
 

@@ -6,6 +6,7 @@ interface ResultHistoryProps {
 }
 
 const ResultHistory: React.FC<ResultHistoryProps> = ({ history }) => {
+  console.log("ResultHistory- rendered");
   return (
     <Container>
       <Title>History numbers:</Title>
