@@ -7,7 +7,7 @@ interface DiceRangeInputProps {
   setRange: (x: number) => void;
 }
 
-const DiceRangeInput: React.FC<DiceRangeInputProps> = ({ range, setRange }) => {
+const DiceRangeInput: React.FC<DiceRangeInputProps> = React.memo(({ range, setRange }) => {
   console.log("DiceRangeInput- rendered");
 
   const [isSubmit, setIsSubmit] = useState(false);
@@ -27,7 +27,7 @@ const DiceRangeInput: React.FC<DiceRangeInputProps> = ({ range, setRange }) => {
       <RangeNumber isSubmit={isSubmit} range={range} />
     </Container>
   );
-};
+});
 
 export default DiceRangeInput;
 

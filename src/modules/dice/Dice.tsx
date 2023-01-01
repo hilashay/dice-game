@@ -4,27 +4,31 @@ import { getRandomInt } from "../../utils/getRandomNumber";
 
 interface DiceProps {
   range: number;
-  onDiceResult: any;
+  onDiceResult?: (x: number) => void;
 }
 
 const Dice: React.FC<DiceProps> = React.memo(({ range, onDiceResult }) => {
-  console.log("dice");
+  console.log("Dice- rendered");
   const [diceResult, setDiceResult] = useState(0);
-
-  useEffect(() => {
-    console.log("Dice- rendered");
-  }, [onDiceResult]);
 
   const handleClick = () => {
     const randomNumber = getRandomInt(range);
     setDiceResult(randomNumber);
-    onDiceResult(randomNumber);
+    onDiceResult?.(randomNumber);
   };
 
-  return <StyledDice onClick={handleClick}>{diceResult}</StyledDice>;
+  return (
+    <Container range={range > 0}>
+      <StyledDice onClick={handleClick}>{diceResult}</StyledDice>
+    </Container>
+  );
 });
 
 export default Dice;
+
+const Container = styled.div<{ range: boolean }>`
+  pointer-events: ${(range) => (range ? "none" : "auto")};
+`;
 
 const StyledDice = styled.div`
   width: 120px;

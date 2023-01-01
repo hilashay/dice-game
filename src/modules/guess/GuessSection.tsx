@@ -9,6 +9,7 @@ interface GuessSectionProps {
 }
 
 const GuessSection: React.FC<GuessSectionProps> = ({ range, lastNumber }) => {
+  console.log(lastNumber);
   console.log("GuessSection- rendered");
   const [guessedNumber, setGuessedNumber] = useState(0);
 
@@ -18,7 +19,9 @@ const GuessSection: React.FC<GuessSectionProps> = ({ range, lastNumber }) => {
   return (
     <Container>
       <UserGuessInput range={range} onGuess={onGuess} />
-      <GuessResult guessedNumber={guessedNumber} lastNumber={lastNumber} />
+      {lastNumber > 0 ? (
+        <GuessResult guessedNumber={guessedNumber} lastNumber={lastNumber} />
+      ) : null}
     </Container>
   );
 };

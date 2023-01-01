@@ -4,7 +4,6 @@ import "./App.css";
 import Dice from "./modules/dice/Dice";
 import ResultHistory from "./modules/history/ResultHistory";
 import DiceRangeInput from "./modules/range/DiceRangeInput";
-import UserGuessInput from "./modules/guess/UserGuessInput";
 import GuessSection from "./modules/guess/GuessSection";
 
 interface GameControllerProps {}

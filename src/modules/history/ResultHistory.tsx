@@ -10,8 +10,8 @@ const ResultHistory: React.FC<ResultHistoryProps> = ({ history }) => {
   return (
     <Container>
       <Title>History numbers:</Title>
-      {history.map((num) => (
-        <EachNumber>{num}</EachNumber>
+      {history.map((num, index) => (
+        <EachNumber key={index}>{num}</EachNumber>
       ))}
     </Container>
   );
