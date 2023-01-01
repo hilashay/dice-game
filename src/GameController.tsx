@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import Dice from "./modules/dice/Dice";
@@ -19,13 +19,14 @@ const GameController: React.FC<GameControllerProps> = ({}) => {
     setLastNumber(number);
   };
 
+  const cachedOnDiceResult = useCallback(onDiceResult, []);
   return (
     <Container>
       <DiceRangeInput range={range} setRange={setRange} />
       <GuessSection range={range} lastNumber={lastNumber} />
       <DicesContainer>
-        <Dice range={range} onDiceResult={onDiceResult} />
-        <Dice range={range} onDiceResult={onDiceResult} />
+        <Dice range={range} onDiceResult={cachedOnDiceResult} />
+        <Dice range={range} onDiceResult={cachedOnDiceResult} />
       </DicesContainer>
       <ResultHistory history={history} />
     </Container>

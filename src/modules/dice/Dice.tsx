@@ -7,9 +7,13 @@ interface DiceProps {
   onDiceResult: any;
 }
 
-const Dice: React.FC<DiceProps> = ({ range, onDiceResult }) => {
-  console.log("Dice- rendered");
+const Dice: React.FC<DiceProps> = React.memo(({ range, onDiceResult }) => {
+  console.log("dice");
   const [diceResult, setDiceResult] = useState(0);
+
+  useEffect(() => {
+    console.log("Dice- rendered");
+  }, [onDiceResult]);
 
   const handleClick = () => {
     const randomNumber = getRandomInt(range);
@@ -18,7 +22,7 @@ const Dice: React.FC<DiceProps> = ({ range, onDiceResult }) => {
   };
 
   return <StyledDice onClick={handleClick}>{diceResult}</StyledDice>;
-};
+});
 
 export default Dice;
 
