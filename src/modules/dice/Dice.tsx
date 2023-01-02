@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useRange } from "../../MyContext";
 import { getRandomInt } from "../../utils/getRandomNumber";
 
 interface DiceProps {
-  range: number;
   onDiceResult?: (x: number) => void;
 }
 
-const Dice: React.FC<DiceProps> = ({ range, onDiceResult }) => {
+const Dice: React.FC<DiceProps> = ({ onDiceResult }) => {
   console.log("Dice- rendered");
+  const { range } = useRange();
   const [diceResult, setDiceResult] = useState(0);
 
   const handleClick = () => {
