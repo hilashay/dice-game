@@ -2,15 +2,15 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import Dice from "./modules/dice/Dice";
+import GuessSection from "./modules/guess/GuessSection";
 import ResultHistory from "./modules/history/ResultHistory";
 import DiceRangeInput from "./modules/range/DiceRangeInput";
-import GuessSection from "./modules/guess/GuessSection";
+import { MyContextProvider } from "./MyContext";
 
 interface GameControllerProps {}
 
 const GameController: React.FC<GameControllerProps> = ({}) => {
   const [history, setHistory] = useState<number[]>([]);
-  const [range, setRange] = useState<number>(0);
   const [lastNumber, setLastNumber] = useState<number>(0);
 
   const onDiceResult = useCallback(
@@ -22,15 +22,17 @@ const GameController: React.FC<GameControllerProps> = ({}) => {
   );
 
   return (
-    <Container>
-      <DiceRangeInput range={range} setRange={setRange} />
-      <GuessSection range={range} lastNumber={lastNumber} />
-      <DicesContainer>
-        <Dice range={range} onDiceResult={onDiceResult} />
-        <Dice range={range} onDiceResult={onDiceResult} />
-      </DicesContainer>
-      <ResultHistory history={history} />
-    </Container>
+    <MyContextProvider>
+      <Container>
+        <DiceRangeInput />
+        <GuessSection lastNumber={lastNumber} />
+        <DicesContainer>
+          <Dice onDiceResult={onDiceResult} />
+          <Dice onDiceResult={onDiceResult} />
+        </DicesContainer>
+        <ResultHistory history={history} />
+      </Container>
+    </MyContextProvider>
   );
 };
 
