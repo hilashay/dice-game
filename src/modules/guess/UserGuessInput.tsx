@@ -39,7 +39,7 @@ const UserGuessInput: React.FC<UserGuessInputProps> = ({ range, onGuess }) => {
   );
 };
 
-export default UserGuessInput;
+export default React.memo(UserGuessInput);
 
 const Container = styled.div`
   display: flex;

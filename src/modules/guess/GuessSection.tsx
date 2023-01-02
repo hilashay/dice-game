@@ -9,7 +9,6 @@ interface GuessSectionProps {
 }
 
 const GuessSection: React.FC<GuessSectionProps> = ({ range, lastNumber }) => {
-  console.log(lastNumber);
   console.log("GuessSection- rendered");
   const [guessedNumber, setGuessedNumber] = useState(0);
 
@@ -26,7 +25,7 @@ const GuessSection: React.FC<GuessSectionProps> = ({ range, lastNumber }) => {
   );
 };
 
-export default GuessSection;
+export default React.memo(GuessSection);
 
 const Container = styled.div`
   display: flex;

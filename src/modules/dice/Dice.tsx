@@ -7,7 +7,7 @@ interface DiceProps {
   onDiceResult?: (x: number) => void;
 }
 
-const Dice: React.FC<DiceProps> = React.memo(({ range, onDiceResult }) => {
+const Dice: React.FC<DiceProps> = ({ range, onDiceResult }) => {
   console.log("Dice- rendered");
   const [diceResult, setDiceResult] = useState(0);
 
@@ -18,16 +18,16 @@ const Dice: React.FC<DiceProps> = React.memo(({ range, onDiceResult }) => {
   };
 
   return (
-    <Container range={range > 0}>
+    <Container disabled={range > 0}>
       <StyledDice onClick={handleClick}>{diceResult}</StyledDice>
     </Container>
   );
-});
+};
 
-export default Dice;
+export default React.memo(Dice);
 
-const Container = styled.div<{ range: boolean }>`
-  pointer-events: ${(range) => (range ? "none" : "auto")};
+const Container = styled.div<{ disabled: boolean }>`
+  pointer-events: ${({ disabled }) => (disabled ? "auto" : "none")};
 `;
 
 const StyledDice = styled.div`

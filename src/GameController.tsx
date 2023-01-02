@@ -13,19 +13,21 @@ const GameController: React.FC<GameControllerProps> = ({}) => {
   const [range, setRange] = useState<number>(0);
   const [lastNumber, setLastNumber] = useState<number>(0);
 
-  const onDiceResult = (number: number) => {
-    setHistory((prev) => [...prev, number]);
-    setLastNumber(number);
-  };
+  const onDiceResult = useCallback(
+    (number: number) => {
+      setHistory((prev) => [...prev, number]);
+      setLastNumber(number);
+    },
+    [setHistory, setLastNumber]
+  );
 
-  const cachedOnDiceResult = useCallback(onDiceResult, []);
   return (
     <Container>
       <DiceRangeInput range={range} setRange={setRange} />
       <GuessSection range={range} lastNumber={lastNumber} />
       <DicesContainer>
-        <Dice range={range} onDiceResult={cachedOnDiceResult} />
-        <Dice range={range} onDiceResult={cachedOnDiceResult} />
+        <Dice range={range} onDiceResult={onDiceResult} />
+        <Dice range={range} onDiceResult={onDiceResult} />
       </DicesContainer>
       <ResultHistory history={history} />
     </Container>
