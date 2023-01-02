@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useRange } from "../../MyContext";
 import RangeNumber from "./RangeNumber";
 
-interface DiceRangeInputProps {
-  range: number;
-  setRange: (x: number) => void;
-}
-
-const DiceRangeInput: React.FC<DiceRangeInputProps> = React.memo(({ range, setRange }) => {
+const DiceRangeInput = React.memo(() => {
   console.log("DiceRangeInput- rendered");
-
+  const { range, setRange } = useRange();
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleSubmit = (e: any) => {
