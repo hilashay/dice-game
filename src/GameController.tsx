@@ -5,32 +5,21 @@ import Dice from "./modules/dice/Dice";
 import GuessSection from "./modules/guess/GuessSection";
 import ResultHistory from "./modules/history/ResultHistory";
 import DiceRangeInput from "./modules/range/DiceRangeInput";
-import { MyContextProvider } from "./MyContext";
+import { MyContextProvider, useLastNumber, useHistory } from "./MyContext";
 
 interface GameControllerProps {}
 
 const GameController: React.FC<GameControllerProps> = ({}) => {
-  const [history, setHistory] = useState<number[]>([]);
-  const [lastNumber, setLastNumber] = useState<number>(0);
-
-  const onDiceResult = useCallback(
-    (number: number) => {
-      setHistory((prev) => [...prev, number]);
-      setLastNumber(number);
-    },
-    [setHistory, setLastNumber]
-  );
-
   return (
     <MyContextProvider>
       <Container>
         <DiceRangeInput />
-        <GuessSection lastNumber={lastNumber} />
+        <GuessSection />
         <DicesContainer>
-          <Dice onDiceResult={onDiceResult} />
-          <Dice onDiceResult={onDiceResult} />
+          <Dice />
+          <Dice />
         </DicesContainer>
-        <ResultHistory history={history} />
+        <ResultHistory />
       </Container>
     </MyContextProvider>
   );

@@ -1,16 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from "../../MyContext";
 
-interface ResultHistoryProps {
-  history: number[];
-}
+interface ResultHistoryProps {}
 
-const ResultHistory: React.FC<ResultHistoryProps> = ({ history }) => {
+const ResultHistory: React.FC<ResultHistoryProps> = () => {
   console.log("ResultHistory- rendered");
+  const { history } = useHistory();
+  console.log("history:", useHistory());
+  console.log("history:", history);
+
   return (
     <Container>
       <Title>History numbers:</Title>
-      {history.map((num, index) => (
+      {history?.map((num: number, index: number) => (
         <EachNumber key={index}>{num}</EachNumber>
       ))}
     </Container>

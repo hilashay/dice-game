@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useRange } from "../../MyContext";
+import { useLastNumber, useRange } from "../../MyContext";
 import GuessResult from "./GuessResult";
 import UserGuessInput from "./UserGuessInput";
 
-interface GuessSectionProps {
-  lastNumber: number;
-}
+interface GuessSectionProps {}
 
-const GuessSection: React.FC<GuessSectionProps> = ({ lastNumber }) => {
+const GuessSection: React.FC<GuessSectionProps> = () => {
   console.log("GuessSection- rendered");
 
   const { range } = useRange();
+  const { lastNumber } = useLastNumber();
   const [guessedNumber, setGuessedNumber] = useState(0);
 
   const onGuess = (number: number) => {
