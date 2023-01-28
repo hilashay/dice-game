@@ -2,16 +2,12 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import Dice from "./modules/dice/Dice";
+import GameOver from "./modules/gameOver/GameOver";
 import GuessSection from "./modules/guess/GuessSection";
 import ResultHistory from "./modules/history/ResultHistory";
 import DiceRangeInput from "./modules/range/DiceRangeInput";
 import SelectedNumberOfDice from "./modules/selectedNumberOfDice/selectedNumberOfDice";
-import {
-  GeneralContextProvider,
-  useLastNumber,
-  useHistory,
-  useSelectedNumberOfDices,
-} from "./MyContext";
+import { useSelectedNumberOfDices } from "./MyContext";
 
 interface GameControllerProps {}
 
@@ -31,6 +27,7 @@ const GameController: React.FC<GameControllerProps> = ({}) => {
           ))}
       </DicesContainer>
       <ResultHistory />
+      <GameOver />
     </Container>
   );
 };
@@ -38,6 +35,7 @@ const GameController: React.FC<GameControllerProps> = ({}) => {
 export default GameController;
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
