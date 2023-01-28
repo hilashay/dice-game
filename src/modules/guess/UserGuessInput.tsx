@@ -8,7 +8,6 @@ interface UserGuessInputProps {
 }
 
 const UserGuessInput: React.FC<UserGuessInputProps> = ({ range, onGuess }) => {
-  console.log("UserGuessInput- rendered");
   const [isSubmit, setIsSubmit] = useState(false);
   const [guessedNumber, setGuessedNumber] = useState(0);
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import styled from "styled-components";
 import { useLastNumber, useOnDiceResult, useRange } from "../../MyContext";
 import { getRandomInt } from "../../utils/getRandomNumber";
@@ -6,15 +6,15 @@ import { getRandomInt } from "../../utils/getRandomNumber";
 interface DiceProps {}
 
 const Dice: React.FC<DiceProps> = ({}) => {
-  console.log("Dice- rendered");
   const { range } = useRange();
-  const { onDiceResult } = useOnDiceResult();
+  const onDiceResult = useOnDiceResult();
+
   const [diceResult, setDiceResult] = useState(0);
 
   const handleClick = () => {
     const randomNumber = getRandomInt(range);
     setDiceResult(randomNumber);
-    onDiceResult?.(randomNumber);
+    onDiceResult(randomNumber);
   };
 
   return (
@@ -24,7 +24,7 @@ const Dice: React.FC<DiceProps> = ({}) => {
   );
 };
 
-export default React.memo(Dice);
+export default memo(Dice);
 
 const Container = styled.div<{ disabled: boolean }>`
   pointer-events: ${({ disabled }) => (disabled ? "auto" : "none")};

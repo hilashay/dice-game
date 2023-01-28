@@ -11,7 +11,6 @@ interface GuessResultProps {
 }
 
 const GuessResult: React.FC<GuessResultProps> = ({ guessedNumber, lastNumber }) => {
-  console.log("GuessResult- rendered");
   let result;
   if (guessedNumber === lastNumber || guessedNumber === lastNumber) {
     result = "yay!";

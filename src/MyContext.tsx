@@ -1,5 +1,7 @@
 import React, { useCallback, useContext, useState } from "react";
+import { useEffect } from "react";
 
+//typeScript
 interface ContextProps {
   range: number;
   setRange: (input: number) => void;
@@ -9,11 +11,12 @@ interface ContextProps {
   history: any;
   setHistory: (input: number[]) => void;
 }
-// (number: number) => void;
 
+//my context
 export const MyContext = React.createContext<ContextProps | null>(null);
-
+//provider
 export const MyContextProvider = ({ children }: any) => {
+  // global states
   const [range, setRange] = useState<number>(0);
   const [lastNumber, setLastNumber] = useState<number>(0);
   const [history, setHistory] = useState<number[]>([]);
@@ -22,12 +25,12 @@ export const MyContextProvider = ({ children }: any) => {
     (number: number) => {
       setHistory((prev): any => [...prev, number]);
       setLastNumber(number);
-      console.log("history11", history);
     },
     [setHistory, setLastNumber]
   );
 
   return (
+    //values of my provider
     <MyContext.Provider
       value={{ range, setRange, lastNumber, setLastNumber, onDiceResult, history, setHistory }}
     >
@@ -36,19 +39,7 @@ export const MyContextProvider = ({ children }: any) => {
   );
 };
 
-// export const useRange = () => {
-//   // const x = useContext(MyContext);
-//   const x = {range: "", setRange: 4}
-//   const height = x.height
-//   // const weight = x.weight
-//   const {height,weight} = x
-
-//   return {height: height, weight: weight}
-
-//   const { range, setRange } = useContext(MyContext);
-
-//   return { range:range, setRange };
-// };  לכתוב הסבר על שני הסינתקטיק שוגר שמתקיימים פה
+//costum hooks use "useContext" (consumer)
 export const useRange = () => {
   const { range, setRange } = useContext(MyContext)!;
   return { range, setRange };
@@ -58,6 +49,7 @@ export const useLastNumber = () => {
   const { lastNumber, setLastNumber } = useContext(MyContext)!;
   return { lastNumber, setLastNumber };
 };
+
 export const useOnDiceResult = () => {
   const { onDiceResult } = useContext(MyContext)!;
   return onDiceResult;

@@ -4,7 +4,6 @@ import { useRange } from "../../MyContext";
 import RangeNumber from "./RangeNumber";
 
 const DiceRangeInput = React.memo(() => {
-  console.log("DiceRangeInput- rendered");
   const { range, setRange } = useRange();
   const [isSubmit, setIsSubmit] = useState(false);
 

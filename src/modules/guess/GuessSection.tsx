@@ -7,8 +7,6 @@ import UserGuessInput from "./UserGuessInput";
 interface GuessSectionProps {}
 
 const GuessSection: React.FC<GuessSectionProps> = () => {
-  console.log("GuessSection- rendered");
-
   const { range } = useRange();
   const { lastNumber } = useLastNumber();
   const [guessedNumber, setGuessedNumber] = useState(0);

@@ -7,7 +7,6 @@ interface RangeNumberProps {
 }
 
 const RangeNumber: React.FC<RangeNumberProps> = ({ isSubmit, range }) => {
-  console.log("RangeNumber- rendered");
   return isSubmit ? <SelectedNumberStyle>chosen number:{range}</SelectedNumberStyle> : null;
 };
 
