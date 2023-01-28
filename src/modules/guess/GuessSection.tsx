@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useLastNumber, useRange } from "../../MyContext";
+import { useGuessedNumber, useLastNumber, useRange } from "../../MyContext";
 import GuessResult from "./GuessResult";
 import UserGuessInput from "./UserGuessInput";
 
@@ -9,7 +9,8 @@ interface GuessSectionProps {}
 const GuessSection: React.FC<GuessSectionProps> = () => {
   const { range } = useRange();
   const { lastNumber } = useLastNumber();
-  const [guessedNumber, setGuessedNumber] = useState(0);
+  const { guessedNumber, setGuessedNumber } = useGuessedNumber();
+  // const [guessedNumber, setGuessedNumber] = useState(0);
 
   const onGuess = (number: number) => {
     setGuessedNumber(number);

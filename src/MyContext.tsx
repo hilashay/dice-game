@@ -12,6 +12,8 @@ interface ContextProps {
   setHistory: (input: number[]) => void;
   selectedNumberOfDices: number;
   setSelectedNumberOfDices: (input: number) => void;
+  guessedNumber: number;
+  setGuessedNumber: (input: number) => void;
 }
 
 //my context
@@ -23,6 +25,7 @@ export const GeneralContextProvider = ({ children }: any) => {
   const [lastNumber, setLastNumber] = useState<number>(0);
   const [history, setHistory] = useState<number[]>([]);
   const [selectedNumberOfDices, setSelectedNumberOfDices] = useState(0);
+  const [guessedNumber, setGuessedNumber] = useState(0);
 
   const onDiceResult = useCallback(
     (number: number) => {
@@ -45,6 +48,8 @@ export const GeneralContextProvider = ({ children }: any) => {
         setHistory,
         selectedNumberOfDices,
         setSelectedNumberOfDices,
+        guessedNumber,
+        setGuessedNumber,
       }}
     >
       {children}
@@ -75,6 +80,10 @@ export const useHistory = () => {
 
 export const useSelectedNumberOfDices = () => {
   const { selectedNumberOfDices, setSelectedNumberOfDices } = useContext(MyContext)!;
-  console.log("Mycontext selectedNumberOfDices", selectedNumberOfDices);
   return { selectedNumberOfDices, setSelectedNumberOfDices };
+};
+
+export const useGuessedNumber = () => {
+  const { guessedNumber, setGuessedNumber } = useContext(MyContext)!;
+  return { guessedNumber, setGuessedNumber };
 };
