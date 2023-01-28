@@ -3,12 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import GameController from "./GameController";
 import reportWebVitals from "./reportWebVitals";
+import { GeneralContextProvider } from "./MyContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <GameController />
-  </React.StrictMode>
+  <GeneralContextProvider>
+    <React.StrictMode>
+      <GameController />
+    </React.StrictMode>
+  </GeneralContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

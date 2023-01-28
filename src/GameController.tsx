@@ -5,32 +5,33 @@ import Dice from "./modules/dice/Dice";
 import GuessSection from "./modules/guess/GuessSection";
 import ResultHistory from "./modules/history/ResultHistory";
 import DiceRangeInput from "./modules/range/DiceRangeInput";
-import { MyContextProvider, useLastNumber, useHistory } from "./MyContext";
+import SelectedNumberOfDice from "./modules/selectedNumberOfDice/selectedNumberOfDice";
+import {
+  GeneralContextProvider,
+  useLastNumber,
+  useHistory,
+  useSelectedNumberOfDices,
+} from "./MyContext";
 
 interface GameControllerProps {}
 
 const GameController: React.FC<GameControllerProps> = ({}) => {
-  const number = 5;
-  const numberOfDices = [];
-  for (let i = 0; i < number; i++) {
-    numberOfDices.push(0);
-  }
+  const { selectedNumberOfDices } = useSelectedNumberOfDices();
 
   return (
-    <MyContextProvider>
-      <Container>
-        <DiceRangeInput />
-        <GuessSection />
-        <DicesContainer>
-          {numberOfDices.map((el) => (
-            <text>1</text>
+    <Container>
+      <DiceRangeInput />
+      <GuessSection />
+      <SelectedNumberOfDice />
+      <DicesContainer>
+        {Array(selectedNumberOfDices)
+          .fill("")
+          .map(() => (
+            <Dice />
           ))}
-          <Dice />
-          <Dice />
-        </DicesContainer>
-        <ResultHistory />
-      </Container>
-    </MyContextProvider>
+      </DicesContainer>
+      <ResultHistory />
+    </Container>
   );
 };
 
@@ -46,6 +47,8 @@ const DicesContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 400px;
-  height: 200px;
+  height: 100%;
   align-items: center;
+  flex-flow: wrap;
+  padding-bottom: 50px;
 `;

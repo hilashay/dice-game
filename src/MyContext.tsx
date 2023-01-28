@@ -10,16 +10,19 @@ interface ContextProps {
   onDiceResult: any;
   history: any;
   setHistory: (input: number[]) => void;
+  selectedNumberOfDices: number;
+  setSelectedNumberOfDices: (input: number) => void;
 }
 
 //my context
 export const MyContext = React.createContext<ContextProps | null>(null);
 //provider
-export const MyContextProvider = ({ children }: any) => {
+export const GeneralContextProvider = ({ children }: any) => {
   // global states
   const [range, setRange] = useState<number>(0);
   const [lastNumber, setLastNumber] = useState<number>(0);
   const [history, setHistory] = useState<number[]>([]);
+  const [selectedNumberOfDices, setSelectedNumberOfDices] = useState(0);
 
   const onDiceResult = useCallback(
     (number: number) => {
@@ -32,7 +35,17 @@ export const MyContextProvider = ({ children }: any) => {
   return (
     //values of my provider
     <MyContext.Provider
-      value={{ range, setRange, lastNumber, setLastNumber, onDiceResult, history, setHistory }}
+      value={{
+        range,
+        setRange,
+        lastNumber,
+        setLastNumber,
+        onDiceResult,
+        history,
+        setHistory,
+        selectedNumberOfDices,
+        setSelectedNumberOfDices,
+      }}
     >
       {children}
     </MyContext.Provider>
@@ -54,7 +67,14 @@ export const useOnDiceResult = () => {
   const { onDiceResult } = useContext(MyContext)!;
   return onDiceResult;
 };
+
 export const useHistory = () => {
   const { history } = useContext(MyContext)!;
   return history;
+};
+
+export const useSelectedNumberOfDices = () => {
+  const { selectedNumberOfDices, setSelectedNumberOfDices } = useContext(MyContext)!;
+  console.log("Mycontext selectedNumberOfDices", selectedNumberOfDices);
+  return { selectedNumberOfDices, setSelectedNumberOfDices };
 };

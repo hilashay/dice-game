@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useSelectedNumberOfDices } from "../../MyContext";
 
-const selectedNumberOfDice = () => {
-  const [selectedNumber, setSelectedNumber] = useState(0);
+const SelectedNumberOfDice = () => {
+  const [number, setNumber] = useState(0);
+  const { selectedNumberOfDices, setSelectedNumberOfDices } = useSelectedNumberOfDices();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    setSelectedNumberOfDices(number);
     // onGuess(guessedNumber);
-    if (selectedNumber > 20 || selectedNumber < 0) {
+    if (selectedNumberOfDices > 20 || selectedNumberOfDices < 0) {
       alert("Only numbers between 1 to 20");
     }
   };
@@ -18,8 +21,8 @@ const selectedNumberOfDice = () => {
         <Label>Select number of dices</Label>
         <Input
           type="number"
-          value={selectedNumber}
-          onChange={(e) => setSelectedNumber(parseInt(e.target.value))}
+          value={number}
+          onChange={(e) => setNumber(parseInt(e.target.value))}
         ></Input>
         <SubmitButton>Submit guess</SubmitButton>
       </StyledForm>
@@ -28,7 +31,7 @@ const selectedNumberOfDice = () => {
   );
 };
 
-export default selectedNumberOfDice;
+export default SelectedNumberOfDice;
 
 const Container = styled.div`
   display: flex;

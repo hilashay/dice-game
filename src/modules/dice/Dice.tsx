@@ -33,6 +33,7 @@ const Container = styled.div<{ disabled: boolean }>`
 const StyledDice = styled.div`
   width: 120px;
   height: 100px;
+  margin: 10px;
   background: #ffffff;
   display: flex;
   align-items: center;
