@@ -10,12 +10,21 @@ import { MyContextProvider, useLastNumber, useHistory } from "./MyContext";
 interface GameControllerProps {}
 
 const GameController: React.FC<GameControllerProps> = ({}) => {
+  const number = 5;
+  const numberOfDices = [];
+  for (let i = 0; i < number; i++) {
+    numberOfDices.push(0);
+  }
+
   return (
     <MyContextProvider>
       <Container>
         <DiceRangeInput />
         <GuessSection />
         <DicesContainer>
+          {numberOfDices.map((el) => (
+            <text>1</text>
+          ))}
           <Dice />
           <Dice />
         </DicesContainer>

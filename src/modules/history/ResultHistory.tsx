@@ -5,7 +5,7 @@ import { useHistory } from "../../MyContext";
 interface ResultHistoryProps {}
 
 const ResultHistory: React.FC<ResultHistoryProps> = () => {
-  const { history } = useHistory();
+  const history = useHistory();
 
   return (
     <Container>
